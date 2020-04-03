@@ -1,0 +1,196 @@
+<link rel="stylesheet" href="../css/addroomdetail.css">
+<script>
+   $(document).ready(function() {
+  $(document).on('click', '.addService', function(){
+    var html = '<div><input type="text" class ="addroomdetailformel remove_field" name="myInput"><button type="button" class="removeService">Delete</button></div>';
+  $(this).parent().append(html);
+});
+
+ $(document).on('click', '.removeService', function(){
+ $(this).parent('div').remove();
+})
+
+ $('#mySelect').multiselect({
+    nonSelectedText: 'Select Framework',
+  enableFiltering: true,
+  enableCaseInsensitiveFiltering: true,
+  buttonWidth:'400px'
+ });
+
+ $('#facility').multiselect();
+});
+</script>
+
+<div class="addRoomDetail">
+
+<h2 class="roomDetail"> <strong>Add Room Detail</strong></h2>
+
+<div class="container">
+  <form action="/action_page.php">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="col-25">
+        <label for="State" >State</label>
+      </div>
+      <div class="col-75">
+        <select id="State" class="addroomdetailformelement" name="State">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
+
+   </div>
+      <div class="col-sm-6">
+       
+        <div class="col-25">
+        <label for="City" >City</label>
+      </div>
+      <div class="col-75">
+        <select id="City" class="addroomdetailformelement" name="City">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
+
+   
+      </div>
+    </div>
+
+      <div class="row">
+      <div class="col-sm-6">
+        <div class="col-25">
+        <label for="Ownername" >Owner Name</label>
+      </div>
+      <div class="col-75">
+        <select id="Ownername" class="addroomdetailformelement" name="Ownername">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
+
+   </div>
+      <div class="col-sm-6">
+       
+        <div class="col-25">
+        <label for="Roomtype" >Room Type</label>
+      </div>
+      <div class="col-75">
+        <select id="Roomtype" class="addroomdetailformelement" name="Roomtype">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
+
+   
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="contactno">Contact Number</label>
+      </div>
+      <div class="col-75">
+        <input id="contactno" type="text" class="addroomdetailformel" name="contactno" placeholder="Write something.." ></input>
+      </div>
+      </div>
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="maxpeople">Maximum People allowed</label>
+      </div>
+      <div class="col-75">
+        <input id="maxpeople" type="text" class="addroomdetailformel" name="maxpeople" placeholder="Write something.." ></input>
+      </div>
+      </div>
+    </div>
+
+        <div class="row">
+      <div class="col-sm-12">
+      <div class="col-25">
+        <label for="address">Address Detail</label>
+      </div>
+      <div class="col-75">
+        <input id="address" type="text" class="addroomdetailformel" name="address" placeholder="Write something.." ></input>
+      </div>
+      </div>
+    </div>
+
+        <div class="row">
+      <div class="col-sm-12">
+      <div class="col-25">
+        <label for="landmark">Land Mark</label>
+      </div>
+      <div class="col-75">
+        <input id="landmark" type="text" class="addroomdetailformel" name="landmark" placeholder="Write something.." ></input>
+      </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-12">
+      <div class="col-25">
+        <label for="subject">Special Feature</label>
+      </div>
+      <div class="col-75">
+         <input type="text" class ="addroomdetailformel" name='+value+'[]>
+      <button type="button" class="addService">Add More</button></div>
+      </div>
+    </div>
+  
+     <div class="row">
+      <div class="col-sm-12">
+      <div class="col-25">
+        <label for="subject">Extra Information</label>
+      </div>
+      <div class="col-75">
+         <input type="text" class ="addroomdetailformel" name='+value+'[]>
+      <button type="button" class="addService">Add More</button></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="col-25">
+        <label for="facility" >Facility</label>
+      </div>
+      <div class="col-75">
+        <select id="facility" class="addroomdetailformelement" name="facility"  multiple="multiple">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
+
+   </div>
+      <div class="col-sm-6">
+       
+        <select id="mySelect" multiple="multiple">
+<option value="Option one">Option one</option>
+<option value="Option two">Option two</option>
+<option value="Option three">Option three</option>
+<option value="Option four">Option four</option>
+<option value="Option five">Option five</option>
+<option value="Option six">Option six</option>
+</select>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="roomdetail">Room Detail</label>
+      </div>
+      <div class="col-75">
+        <textarea id="subject" class="addroomdetailformelement" name="roomdetail" placeholder="Write something.." style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+</div>
+</div>

@@ -1,0 +1,27 @@
+
+    .container-table {
+      
+    margin-top: 6%;
+    padding: 60px 50px;
+}
+
+.container-admin{
+      
+    margin-top: 3%;
+  
+}
+.theadstyle{
+        background-color: #46344E;
+    color: white;
+}
+.adminbtn{
+    width:fit-content;
+    float: right
+}
+
+.adminaddbtn{
+    width:fit-content;
+    float: left
+}
+
+    
