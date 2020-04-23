@@ -24,4 +24,20 @@
     float: left
 }
 
+.roomlisttableedit{
+    width:fit-content;
+    padding: 4px 13px;
+    background-color: #46344E;
+
+
+}
+
+.roomlisttabledelete{
+    width:fit-content;
+    padding: 4px 13px;
+    background-color: red;
+    
+
+}
+
     

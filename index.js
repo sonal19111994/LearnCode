@@ -63,9 +63,7 @@ app.use(morgan('combined'));
   extended: false,
 })); */
 // Register middleware that parses the request payload.
-app.use(bodyParser.raw({
-  type: 'application/jwt',
-}));
+app.use(bodyParser.json());
 
 // compress all routes
 app.use(compression());
@@ -75,7 +73,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'lib/public')));
-app.use(bodyParser.raw({ type: 'application/jwt' }));
+app.use(bodyParser.urlencoded({
+  extended: false,
+}));
 // Load authenticated routes
 app.use('/', authenticatedRoutes);
 

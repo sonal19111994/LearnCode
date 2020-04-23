@@ -1,8 +1,68 @@
-<link rel="stylesheet" href="../css/addroomdetail.css">
-<script src="../js/addroomdetail.js"></script>
+<link rel="stylesheet" href="../css/updateroomdetail.css">
+<script src="../js/updateroomdetail.js"></script>
 
 <script>
+  function getUrlVars() {
+  var vars = [], hash;
+  var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+  for (var i = 0; i < hashes.length; i++) {
+    hash = hashes[i].split('=');
+    vars.push(hash[0]);
+    vars[hash[0]] = hash[1];
+  }
+  return vars;
+}
+
+
   $(document).ready(function() {
+
+   var Room_ID = getUrlVars()["Room_ID"];
+ 
+
+    console.log("hi");
+     console.log(Room_ID);
+    $.ajax({
+        url: "/viewRoomdetail",
+        method: "POST",
+        data: {
+          'id':Room_ID
+        },
+        success: function (response) {
+          console.log(response);
+          console.log(response[0].id);
+          $('#updState').val(response[0].stateid);
+          $('#updOwnername').val(response[0].ownerid);
+          $('#updRoomtype').val(response[0].roomtype);
+          $('#updcontactno').val(response[0].contactno);
+          $('#updmaxpeople').val(response[0].maxpeople);
+          $('#updfacility').multiselect('select', response[0].facilitiesid);
+           $('#updRoomfor').multiselect('select', response[0].applicablepeopletype);
+          //$('#updmyFile').val(response[0].primaryimage);
+          //$('#updmyFilesecondary').val(response[0].otherimages);
+          $('#updaddress').val(response[0].addressdetail);
+          $('#updlandmark').val(response[0].roomrent);
+         // $('#specialfeature').val(response[0].specialfeature);
+         for (i = 0; i < (response[0].rules).Length -1; i++){
+    $(".addService").click();
+    console.log("hello");
+     }
+     
+
+         
+          // $('#extrainfo').val(response[0].extrainfo);
+
+          $(".addService1").click();
+
+          $('#updroomdetail').val(response[0].roomdetail);
+          $('#updateroomdetailbtn').attr('data-id' , response[0].id);
+          // var data = JSON.parse(response);
+
+         
+        }
+});
+
+
+ 
   $(document).on('click', '.addService', function(){
   var html = '<div><input type="text" class ="addroomdetailformel remove_field specialfeature" name="myInput"><button type="button" class="removeService">-</button></div>';
   $(this).parent().append(html);
@@ -23,7 +83,7 @@
 
 
 
- $('#Roomfor').multiselect({
+ $('#updRoomfor').multiselect({
   nonSelectedText: 'Room For',
   enableFiltering: true,
   enableCaseInsensitiveFiltering: true,
@@ -31,20 +91,20 @@
  });
 
 
- $('#facility').multiselect({
+ $('#updfacility').multiselect({
   nonSelectedText: 'Choose Facilities',
   enableFiltering: true,
   enableCaseInsensitiveFiltering: true,
   buttonWidth:'400px'
  });
- $('#facility').hide();
- $('#Roomfor').hide();
+ $('#updfacility').hide();
+ $('#updRoomfor').hide();
 });
 </script>
 
-<div class="addRoomDetail">
+<div class="updRoomDetail">
 
-<h2 class="roomDetail"> <strong>Add Room Detail</strong></h2>
+<h2 class="updroomDetail"> <strong>Update Room Detail</strong></h2>
 
 <div class="container">
   <form >
@@ -54,8 +114,8 @@
         <label for="State" >State</label>
       </div>
       <div class="col-75">
-        <select id="State" class="addroomdetailformelement" name="State">
-          {{#each loadadddetailpagedata.loadStatelist}}
+        <select id="updState" class="addroomdetailformelement" name="State">
+          {{#each loadupdatedetailpagedata.loadStatelist}}
           <option value="{{ this.id }}">{{ this.statename }}</option>
           
            {{/each}}
@@ -69,8 +129,8 @@
         <label for="City" >City</label>
       </div>
       <div class="col-75">
-        <select id="City" class="addroomdetailformelement" name="City">
-          {{#each loadadddetailpagedata.loadCitylist}}
+        <select id="updCity" class="addroomdetailformelement" name="City">
+          {{#each loadupdatedetailpagedata.loadCitylist}}
           <option value="{{ this.id }}">{{ this.cityname }}</option>
           {{/each}}
         </select>
@@ -86,8 +146,8 @@
         <label for="Ownername" >Owner Name</label>
       </div>
       <div class="col-75">
-        <select id="Ownername" class="addroomdetailformelement" name="Ownername">
-          {{#each loadadddetailpagedata.loadVendorlist}}
+        <select id="updOwnername" class="addroomdetailformelement" name="Ownername">
+          {{#each loadupdatedetailpagedata.loadVendorlist}}
           <option value="{{ this.id }}">{{ this.username }}</option>
           {{/each}}
         </select>
@@ -100,8 +160,8 @@
         <label for="Roomtype" >Room Type</label>
       </div>
       <div class="col-75">
-        <select id="Roomtype" class="addroomdetailformelement" name="Roomtype">
-         {{#each loadadddetailpagedata.loadRoomrentlist}}
+        <select id="updRoomtype" class="addroomdetailformelement" name="Roomtype">
+         {{#each loadupdatedetailpagedata.loadRoomrentlist}}
           <option value="{{ this.id }}">{{ this.roomrentname }}</option>
           {{/each}}
         </select>
@@ -119,7 +179,7 @@
         <label for="contactno">Contact Number</label>
       </div>
       <div class="col-75">
-        <input id="contactno" type="text" class="addroomdetailformel" name="contactno" placeholder="Write something.." ></input>
+        <input id="updcontactno" type="text" class="addroomdetailformel" name="contactno" placeholder="Write something.." ></input>
       </div>
       </div>
       <div class="col-sm-6">
@@ -127,7 +187,7 @@
         <label for="maxpeople">Maximum People allowed</label>
       </div>
       <div class="col-75">
-        <input id="maxpeople" type="text" class="addroomdetailformel" name="maxpeople" placeholder="Write something.." ></input>
+        <input id="updmaxpeople" type="text" class="addroomdetailformel" name="maxpeople" placeholder="Write something.." ></input>
       </div>
       </div>
     </div>
@@ -139,8 +199,8 @@
         <label for="facility" >Facility</label>
       </div>
       <div class="col-75">
-        <select id="facility" class="addroomdetailformelement" name="facility"  multiple="multiple">
-          {{#each loadadddetailpagedata.loadFacilitylist}}
+        <select id="updfacility" class="addroomdetailformelement" name="facility"  multiple="multiple">
+          {{#each loadupdatedetailpagedata.loadFacilitylist}}
           <option value="{{ this.id }}">{{ this.facilityname }}</option>
           {{/each}}
         </select>
@@ -152,8 +212,8 @@
         <label for="Roomfor" >Room For</label>
       </div>
       <div class="col-75">
-        <select id="Roomfor" class="addroomdetailformelement" name="Roomfor"  multiple="multiple">
-          {{#each loadadddetailpagedata.loadroomapplicabletypelist}}
+        <select id="updRoomfor" class="addroomdetailformelement" name="Roomfor"  multiple="multiple">
+          {{#each loadupdatedetailpagedata.loadroomapplicabletypelist}}
           <option value="{{ this.id }}">{{ this.applicabletype }}</option>
           {{/each}}
         </select>
@@ -168,7 +228,7 @@
         <label for="myFile">Upload Primary Room image</label>
       </div>
       <div class="col-75">
-       <input type="file" id="myFile" name="files" > 
+       <input type="file" id="updmyFile" name="files" > 
        </div>
     </div>
     <div class="col-sm-6">
@@ -176,7 +236,7 @@
         <label for="myFilesecondary">Upload  Room image</label>
       </div>
       <div class="col-75">
-       <input type="file" id="myFilesecondary" name="files" multiple="true"> 
+       <input type="file" id="updmyFilesecondary" name="files" multiple="true"> 
        </div>
     </div>
     </div>
@@ -187,7 +247,7 @@
         <label for="address">Address Detail</label>
       </div>
       <div class="col-75">
-        <input id="address" type="text" class="addroomdetailformel" name="address" placeholder="Write something.." ></input>
+        <input id="updaddress" type="text" class="addroomdetailformel" name="address" placeholder="Write something.." ></input>
       </div>
       </div>
     </div>
@@ -198,7 +258,7 @@
         <label for="landmark">Land Mark</label>
       </div>
       <div class="col-75">
-        <input id="landmark" type="text" class="addroomdetailformel" name="landmark" placeholder="Write something.." ></input>
+        <input id="updlandmark" type="text" class="addroomdetailformel" name="landmark" placeholder="Write something.." ></input>
       </div>
       </div>
     </div>
@@ -233,13 +293,13 @@
         <label for="roomdetail">Room Detail</label>
       </div>
       <div class="col-75">
-        <textarea id="roomdetail" class="addroomdetailformelement" name="roomdetail" placeholder="Write something.." style="height:200px"></textarea>
+        <textarea id="updroomdetail" class="addroomdetailformelement" name="roomdetail" placeholder="Write something.." style="height:200px"></textarea>
       </div>
     </div>
 
    
     <div class="row">
-      <button type="button" class="Addproperty" onclick="addRoomDetail()" value="Submit">Add Property</button>
+      <button type="button" id= "updateroomdetailbtn" class="Addproperty" data-id= ""  value="Submit">Update Detail</button>
     </div>
   </form>
 </div>
