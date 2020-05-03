@@ -111,10 +111,16 @@ app.use((err, req, res) => {
 
 
 
-app.set('port', (process.env.PORT || 3000));
-app.listen(app.get('port'), function() {
-    console.log('Server started on port '+app.get('port'));
-});
+// app.set('port', (process.env.PORT || 3000));
+// app.listen(app.get('port'), function() {
+//     console.log('Server started on port '+app.get('port'));
+// });
+
+var server = app.listen(process.env.PORT || 9000, function () {
+  var host = server.address().address
+  var port = server.address().port
+  console.log('App listening at http://%s:%s', host, port)
+})
 
 module.exports = app;
 
