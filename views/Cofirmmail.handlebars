@@ -1,0 +1,88 @@
+<style>
+    
+
+    .confirmmailbtn{
+        background-color:transparent;
+            border: 3px solid white;
+            border-radius: 25px;
+            padding:2% ;
+        width: fit-content;
+    }
+
+    .confirmamildiv{
+         background-color: transparent;
+        color: white;
+        
+    }
+
+    .activatemail{
+        color: white;
+    }
+
+    .confirmmailmaindiv{
+        background-image: url("../img/purplebkg.jpg");
+    }
+</style>
+<div class="container-fluid confirmmailmaindiv">
+<div class = "row confirmmail">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8 confirmamildiv">
+
+    <h2  class="activatemail">click below button to activate your account! </h2>
+    <button type="button" class="confirmmailbtn" onclick="activateaccount()">ACTIVATE ACCOUNT</button>
+    </div>
+    <div class="col-sm-2">
+    </div>
+
+</div>
+
+<div class = "row confirmmail" id="confirmedactivation">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8 confirmamildiv">
+
+    <h2  class="activatemail"> Your account have been successfully activated ! </h2>
+    <h4  class="activatemail"> Click below button to login </h4>
+    <button type="button" class="confirmmailbtn" onclick="gotologin()">LOGIN</button>
+    </div>
+    <div class="col-sm-2">
+    </div>
+
+</div>
+</div>
+
+<script>
+    function getUrlVars() {
+  var vars = [], hash;
+  var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+  for (var i = 0; i < hashes.length; i++) {
+    hash = hashes[i].split('=');
+    vars.push(hash[0]);
+    vars[hash[0]] = hash[1];
+  }
+  return vars;
+}
+    function gotologin(){
+        location.href='/signuppage'
+    }
+
+    function activateaccount(){
+    var emailid = getUrlVars()["mail"];
+     $.ajax({
+        url: "/activateUseraccount",
+        method: "POST",
+        data: {
+          'id':emailid
+        },
+        success: function (response) {
+            $('#confirmedactivation').show();
+            $('#confirmmail').hide();
+        }
+     })
+    }
+
+     $(document).ready(function() {
+          $('#confirmedactivation').hide();
+      })   
+</script>

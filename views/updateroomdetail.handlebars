@@ -19,7 +19,7 @@
    var Room_ID = getUrlVars()["Room_ID"];
  
 
-    console.log("hi");
+   
      console.log(Room_ID);
     $.ajax({
         url: "/viewRoomdetail",
@@ -41,21 +41,29 @@
           //$('#updmyFilesecondary').val(response[0].otherimages);
           $('#updaddress').val(response[0].addressdetail);
           $('#updlandmark').val(response[0].roomrent);
-         // $('#specialfeature').val(response[0].specialfeature);
-         for (i = 0; i < (response[0].rules).Length -1; i++){
-    $(".addService").click();
-    console.log("hello");
-     }
-     
-
-         
-          // $('#extrainfo').val(response[0].extrainfo);
-
-          $(".addService1").click();
-
           $('#updroomdetail').val(response[0].roomdetail);
           $('#updateroomdetailbtn').attr('data-id' , response[0].id);
           // var data = JSON.parse(response);
+          
+    $('#updlati_typeadmin').val(response[0].latitude);
+    $('#updlog_typeadmin').val(response[0].longitude);
+    $('#updLocationame').val(response[0].locationname);
+    $('#updownerfirstname').val(response[0].ownerfisrtname);
+    $('#updownerlastname').val(response[0].ownerlastname);
+    $('#updowneremailid').val(response[0].owneremailid:);
+    $('#updowneradress').val(response[0].owneraddress);
+    $('#updownerrent').val(response[0].roomrent);
+    $('#updfurnished').text(response[0].furnished);
+    $('#updpropertyarea').val(response[0].roomarea);
+    $('#updelectbill').val(response[0]. electricitybill);
+    $('#updwaterbill').val(response[0].waterbill);
+    $('#updmaintcharge').val(response[0].maintainancefee);
+    $('#updsecdepo').val(response[0]. securitydeposit);
+    $('#updmtccharge').val(response[0].mtccharge);
+    $('#updmtcrent').val(response[0].mtcroomrent);
+    $('#updfinalrent').val(response[0].finalrent);
+    $('#updaddcharges').val(response[0].roomdetail);
+     $('#updaddcomment').val(response[0].addcomments);
 
          
         }
@@ -102,21 +110,80 @@
 });
 </script>
 
-<div class="updRoomDetail">
+<div class="container-fluid">
+ <div class="updRoomDetail">
 
-<h2 class="updroomDetail"> <strong>Update Room Detail</strong></h2>
+<h2 class="roomDetail"> <strong>Update Room Detail</strong></h2>
 
 <div class="container">
   <form >
+    <h4 class="addpropertydet">Owner Detail</h4>
+      <div class="row">
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updownerfirstname">First Name</label>
+      </div>
+      <div class="col-75">
+        <input id="updownerfirstname" type="text" class="addroomdetailformel" name="updownerfirstname" placeholder="" ></input>
+      </div>
+      </div>
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updownerlastname">Last Name</label>
+      </div>
+      <div class="col-75">
+        <input id="updownerlastname" type="text" class="addroomdetailformel" name="updownerlastname" placeholder="" ></input>
+      </div>
+      </div>
+    </div>
+          <div class="row">
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updowneremailid">Email Id</label>
+      </div>
+      <div class="col-75">
+        <input id="updowneremailid" type="text" class="addroomdetailformel" name="updowneremailid" placeholder="" ></input>
+      </div>
+      </div>
+       <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updcontactno">Contact Number</label>
+      </div>
+      <div class="col-75">
+        <input id="updcontactno" type="text" class="addroomdetailformel" name="updcontactno" placeholder="Write something.." ></input>
+      </div>
+      </div>
+    </div>
+             <div class="row">
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updowneradress">Address</label>
+      </div>
+      <div class="col-75">
+        <input id="updowneradress" type="text" class="addroomdetailformel" name="updowneradress" placeholder="" ></input>
+      </div>
+      </div>
+       <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updownerrent">Rent Agreed</label>
+      </div>
+      <div class="col-75">
+        <input id="updownerrent" type="text" class="addroomdetailformel" name="updownerrent" placeholder="(in Rs)" ></input>
+      </div>
+      </div>
+    </div>
+
+    <h4 class="addpropertydet">Property Detail</h4>
     <div class="row">
       <div class="col-sm-6">
         <div class="col-25">
-        <label for="State" >State</label>
+        <label for="updState" >State</label>
       </div>
       <div class="col-75">
-        <select id="updState" class="addroomdetailformelement" name="State">
-          {{#each loadupdatedetailpagedata.loadStatelist}}
-          <option value="{{ this.id }}">{{ this.statename }}</option>
+        <select id="updState" class="addroomdetailformelement" name="updState" disabled>
+          
+          {{#each loadadddetailpagedata.loadStatelist}}
+          <option  value="{{ this.id }}">{{ this.statename }}</option>
           
            {{/each}}
         </select>
@@ -126,12 +193,12 @@
       <div class="col-sm-6">
        
         <div class="col-25">
-        <label for="City" >City</label>
+        <label for="updCity" >City</label>
       </div>
       <div class="col-75">
-        <select id="updCity" class="addroomdetailformelement" name="City">
-          {{#each loadupdatedetailpagedata.loadCitylist}}
-          <option value="{{ this.id }}">{{ this.cityname }}</option>
+        <select id="updCity" class="addroomdetailformelement" name="updCity" disabled>
+          {{#each loadadddetailpagedata.loadCitylist}}
+          <option  value="{{ this.id }}">{{ this.cityname }}</option>
           {{/each}}
         </select>
       </div>
@@ -143,25 +210,25 @@
       <div class="row">
       <div class="col-sm-6">
         <div class="col-25">
-        <label for="Ownername" >Owner Name</label>
+        <label for="updLocationame" >Location Name </label>
       </div>
       <div class="col-75">
-        <select id="updOwnername" class="addroomdetailformelement" name="Ownername">
-          {{#each loadupdatedetailpagedata.loadVendorlist}}
-          <option value="{{ this.id }}">{{ this.username }}</option>
-          {{/each}}
-        </select>
+          <input id="updLocationame" type="text" class="addroomdetailformel" name="updLocationame" placeholder="Type Location Name here.." ></input>
+          <input  id="updlog_typeadmin"  type="hidden" >
+          <input  id="updlati_typeadmin"  type="hidden" >
+            <label id="updlblresult"></label>
       </div>
 
    </div>
       <div class="col-sm-6">
        
         <div class="col-25">
-        <label for="Roomtype" >Room Type</label>
+        <label for="updRoomtype" >Room Type</label>
       </div>
       <div class="col-75">
-        <select id="updRoomtype" class="addroomdetailformelement" name="Roomtype">
-         {{#each loadupdatedetailpagedata.loadRoomrentlist}}
+        <select id="updRoomtype" class="addroomdetailformelement" name="updRoomtype">
+          <option value="" selected >Please Choose</option>
+         {{#each loadadddetailpagedata.loadRoomrentlist}}
           <option value="{{ this.id }}">{{ this.roomrentname }}</option>
           {{/each}}
         </select>
@@ -176,18 +243,25 @@
     <div class="row">
       <div class="col-sm-6">
       <div class="col-25">
-        <label for="contactno">Contact Number</label>
+        <label for="updfurnished">Furnishing Type</label>
       </div>
       <div class="col-75">
-        <input id="updcontactno" type="text" class="addroomdetailformel" name="contactno" placeholder="Write something.." ></input>
-      </div>
+         <select id="updfurnished" class="addroomdetailformelement" name="updfurnished">
+          <option value="" selected >Please Choose</option>
+         
+          <option value="1">Furnished</option>
+          <option value="2">Semi Furnished</option>
+          <option value="3">Not Furnished</option>
+          
+        </select>
+        </div>
       </div>
       <div class="col-sm-6">
       <div class="col-25">
-        <label for="maxpeople">Maximum People allowed</label>
+        <label for="updpropertyarea">Property Area</label>
       </div>
       <div class="col-75">
-        <input id="updmaxpeople" type="text" class="addroomdetailformel" name="maxpeople" placeholder="Write something.." ></input>
+        <input id="updpropertyarea" type="text" class="addroomdetailformel" name="updpropertyarea" placeholder="in (Sq.Ft)" ></input>
       </div>
       </div>
     </div>
@@ -196,11 +270,11 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="col-25">
-        <label for="facility" >Facility</label>
+        <label for="updfacility" >Facility</label>
       </div>
       <div class="col-75">
-        <select id="updfacility" class="addroomdetailformelement" name="facility"  multiple="multiple">
-          {{#each loadupdatedetailpagedata.loadFacilitylist}}
+        <select id="updfacility" class="addroomdetailformelement" name="updfacility"  multiple="multiple">
+          {{#each loadadddetailpagedata.loadFacilitylist}}
           <option value="{{ this.id }}">{{ this.facilityname }}</option>
           {{/each}}
         </select>
@@ -209,11 +283,11 @@
    </div>
       <div class="col-sm-6">
         <div class="col-25">
-        <label for="Roomfor" >Room For</label>
+        <label for="updRoomfor" >Room For</label>
       </div>
       <div class="col-75">
-        <select id="updRoomfor" class="addroomdetailformelement" name="Roomfor"  multiple="multiple">
-          {{#each loadupdatedetailpagedata.loadroomapplicabletypelist}}
+        <select id="updRoomfor" class="addroomdetailformelement" name="updRoomfor"  multiple="multiple">
+          {{#each loadadddetailpagedata.loadroomapplicabletypelist}}
           <option value="{{ this.id }}">{{ this.applicabletype }}</option>
           {{/each}}
         </select>
@@ -221,7 +295,9 @@
 
    </div>
     </div>
+ </form>
  
+   <form id="updimagefileupload" class="formValidate" enctype="multipart/form-data"  charset="UTF-8">
     <div class="row">
       <div class="col-sm-6">
       <div class="col-25">
@@ -231,78 +307,167 @@
        <input type="file" id="updmyFile" name="files" > 
        </div>
     </div>
-    <div class="col-sm-6">
+
+     <div class="col-sm-6">
+     
+      <div class="col-75">
+        <button type="button" class="Addproperty" onclick="updRoomDetail1()" value="Submit">Upload</button>
+   
+       </div>
+    </div>
+    
+    
+    </div>
+</form>
+
+<form id="updimagefileuploadsec" class="formValidate"  enctype="multipart/form-data"  charset="UTF-8">
+  <div class="row">
+  <div class="col-sm-6">
       <div class="col-25">
-        <label for="myFilesecondary">Upload  Room image</label>
+        <label for="updmyFilesecondary">Other Room image</label>
       </div>
       <div class="col-75">
-       <input type="file" id="updmyFilesecondary" name="files" multiple="true"> 
+       <input type="file" id="updmyFilesecondary" name="files[]" multiple="multiple"> 
+       </div>
+    </div>
+     <div class="col-sm-6">
+     
+      <div class="col-75">
+        <button type="button" class="Addproperty" onclick="updRoomDetail2()" value="Submit">Upload</button>
+   
        </div>
     </div>
     </div>
+  </form>
+<form>
+        <div class="row">
+      <div class="col-sm-12">
+      <div class="col-25">
+        <label for="updaddress">Address Detail</label>
+      </div>
+      <div class="col-75">
+        <input id="updaddress" type="text" class="addroomdetailformel" name="updaddress" placeholder="Write something.." ></input>
+      </div>
+      </div>
+    </div>
 
         <div class="row">
       <div class="col-sm-12">
       <div class="col-25">
-        <label for="address">Address Detail</label>
+        <label for="updlandmark">Land Mark</label>
       </div>
       <div class="col-75">
-        <input id="updaddress" type="text" class="addroomdetailformel" name="address" placeholder="Write something.." ></input>
+        <input id="updlandmark" type="text" class="addroomdetailformel" name="updlandmark" placeholder="Write something.." ></input>
       </div>
       </div>
     </div>
-
-        <div class="row">
-      <div class="col-sm-12">
-      <div class="col-25">
-        <label for="landmark">Land Mark</label>
-      </div>
-      <div class="col-75">
-        <input id="updlandmark" type="text" class="addroomdetailformel" name="landmark" placeholder="Write something.." ></input>
-      </div>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-sm-12">
-      <div class="col-25">
-        <label for="subject">Special Feature</label>
-      </div>
-      <div class="col-75">
-         <input type="text" class ="addroomdetailformel specialfeature" name='+value+'[]>
-      <button type="button" class="addService">+</button></div>
-      </div>
-    </div>
-  
-     <div class="row">
-      <div class="col-sm-12">
-      <div class="col-25">
-        <label for="subject">Extra Information</label>
-      </div>
-      <div class="col-75">
-         <input type="text" class ="addroomdetailformel extrainfo" name='+value+'[]>
-      <button type="button" class="addService1">+</button></div>
-      </div>
-    </div>
-
-   
 
        <div class="row">
+         <div class="col-sm-12">
       <div class="col-25">
-        <label for="roomdetail">Room Detail</label>
+        <label for="updroomdetail">Room Detail</label>
       </div>
       <div class="col-75">
-        <textarea id="updroomdetail" class="addroomdetailformelement" name="roomdetail" placeholder="Write something.." style="height:200px"></textarea>
+        <textarea id="updroomdetail" class="addroomdetailformelement" name="updroomdetail" placeholder="Write something.." style="height:200px"></textarea>
+      </div>
+      </div>
+    </div>
+
+    <h4 class="addpropertydet">MTC Rent Detail</h4>
+      <div class="row">
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updelectbill">Electricity Bill</label>
+      </div>
+      <div class="col-75">
+        <input id="updelectbill" type="text" class="addroomdetailformel" name="updelectbill" placeholder="(In Rs/)" ></input>
+      </div>
+      </div>
+       <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updwaterbill">Water Bill</label>
+      </div>
+      <div class="col-75">
+        <input id="updwaterbill" type="text" class="addroomdetailformel" name="updwaterbill" placeholder="(In Rs/)" ></input>
+      </div>
+      </div>
+    </div>
+
+          <div class="row">
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updmaintcharge">Maintainance Charge</label>
+      </div>
+      <div class="col-75">
+        <input id="updmaintcharge" type="text" class="addroomdetailformel" name="updmaintcharge" placeholder="(In Rs/)" ></input>
+      </div>
+      </div>
+       <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updsecdepo">Security Deposit</label>
+      </div>
+      <div class="col-75">
+        <input id="updsecdepo" type="text" class="addroomdetailformel" name="updsecdepo" placeholder="(In Rs/)" ></input>
+      </div>
+      </div>
+    </div>
+
+      <div class="row">
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updmtccharge">MTC Charge</label>
+      </div>
+      <div class="col-75">
+        <input id="updmtccharge" type="text" class="addroomdetailformel" name="updmtccharge" placeholder="(In Rs/)" ></input>
+      </div>
+      </div>
+       <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updmtcrent">MTC rent</label>
+      </div>
+      <div class="col-75">
+        <input id="updmtcrent" type="text" class="addroomdetailformel" name="updmtcrent" placeholder="(In Rs/)" ></input>
+      </div>
+      </div>
+    </div>
+    
+    <div class="row">
+     
+       <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updfinalrent">Final Room Charge</label>
+      </div>
+      <div class="col-75">
+        <input id="updfinalrent" type="text" class="addroomdetailformel" name="updfinalrent" placeholder="(In Rs/)" ></input>
+      </div>
+      </div>
+       <div class="col-sm-6">
+      <div class="col-25">
+        <label for="updaddcharges"> Additional Charges</label>
+      </div>
+      <div class="col-75">
+        <input id="updaddcharges" type="text" class="addroomdetailformel" name="updaddcharges" placeholder="" ></input>
+      </div>
+      </div>
+    </div>
+
+           <div class="row">
+         <div class="col-sm-12">
+      <div class="col-25">
+        <label for="updaddcomment">Add comment</label>
+      </div>
+      <div class="col-75">
+        <textarea id="updaddcomment" class="addroomdetailformelement" name="updaddcomment" placeholder="Write something.." style="height:200px"></textarea>
+      </div>
       </div>
     </div>
 
    
     <div class="row">
-      <button type="button" id= "updateroomdetailbtn" class="Addproperty" data-id= ""  value="Submit">Update Detail</button>
+      <button type="button" class="Addproperty" id="updateroomdetailbtn" data-id="" value="Submit">Update Property</button>
     </div>
   </form>
 </div>
 </div>
-
+</div>
  

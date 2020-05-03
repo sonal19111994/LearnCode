@@ -2,21 +2,34 @@
   <script>
       $(document).ready(function() {
       $('#example').DataTable();
+       $('#example1').DataTable();
     
       
   } );
   function addRoomDetailbtn(){
-    alert("hi");
-      //Some code
+ 
       location.href = "/addroomdetails"
   }
   </script>
 
   <link rel="stylesheet" href="../css/roomlist.css">
 
+   <style>
+    
+</style>
+<div class="container-fluid">
+<div class="admincontainer">
+    <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#roomlist">Roomlist</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#bookavisit">Book A visit</a>
+  </li>
+  </ul>
+<div class="tab-content">
 
-
-  <div class="container-table bg-grey">
+  <div id ="roomlist" class="container-table bg-grey tab-pane fade in active">
   <div class="row">
       
     <div>
@@ -40,10 +53,10 @@
             
             {{#each loadRoomListdata}}
               <tr>
-                  <td>{{this.owner}}</td>
+                  <td>{{this.ownername}}</td>
                   <td>{{this.contactno}}</td>
                   <td>{{this.address}}</td>
-                  <td>{{this.bookedornot}}</td>
+                  <td>{{this.bookingstatus}}</td>
                   <td><button class="btn btn-primary edit roomlisttableedit"  data-id="{{this.roomid}}" ><span class="glyphicon glyphicon-edit"></button></td>
                   <td><button class="btn btn-primary delete roomlisttabledelete" data-id="{{this.roomid}}"><span class="glyphicon glyphicon-remove"></button></td>
               </tr>
@@ -51,3 +64,30 @@
           </tbody>
           
       </table></div></div>
+     
+      <div id ="bookavisit" class="tab-pane fade">
+        {{#each isrequestedvist}}
+  <div class="row userlistrow">
+      <div class="col-sm-4">
+<img class ="userlistimg" src="../img/mtm1.jpeg" alt="Los Angeles">
+      </div>
+       <div class="col-sm-4">
+           <p class="Userlistdetail">Rent Rs {{this.finalrent}}</p>
+           <p class="Userlistdetail">{{this.locationname}}</p>
+           <p class="Userlistdetail">2 BHK Room for Family</p>
+
+      </div>
+       <div class="col-sm-4">
+           
+           <p class="Userlistdetail">User Name :  {{this.finalusername}}</p>
+           <p class="Userlistdetail">Contact No :  {{this.userphoneno}}</p>
+           <p class="Userlistdetail">Email ID : {{this.useremailid}}</p>
+       </div>
+      
+   
+      
+  
+    </div> 
+    {{/each}}
+      </div>
+      </div></div>

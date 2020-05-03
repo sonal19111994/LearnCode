@@ -1,0 +1,51 @@
+<script src="../js/roomlist.js"></script> 
+<style>
+  .searchroomtext{
+    font-family: cursive;
+  }
+
+  .viewroomdetail{
+   
+        width: fit-content;
+        padding: 10px 16px;
+        background-color: teal;
+        border-radius: 21px;
+   
+  }
+
+  .roomsearchh2div{
+    margin-top: 0 !important;
+    margin-left:0 !important;
+  }
+</style>
+<div class="row text-center roomsearchpage container-fluid">
+ <h2 class="roomsearchh2div">Room List </h2> 
+  {{#each loadRoomListdata}}
+  <div class="col-sm-4">
+    <div class="thumbnail">
+      <img src="../img/mtm1.jpeg" alt="Paris">
+      <p class="searchroomtext"><strong>Location : {{this.locationname}}</strong></p>
+      <p class="searchroomtext"><strong>Room Rent : </strong> {{this.roomrent}}</p>
+      <button class="btn viewroomdetail" data-id="{{this.id}}" >View Room</button>
+    </div>
+  </div>
+  {{/each}}
+ 
+</div>
+
+<script>
+  function getUrlVars() {
+  var vars = [], hash;
+  var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+  for (var i = 0; i < hashes.length; i++) {
+    hash = hashes[i].split('=');
+    vars.push(hash[0]);
+    vars[hash[0]] = hash[1];
+  }
+  return vars;
+}
+
+
+ </script>
+
+

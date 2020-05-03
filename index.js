@@ -1,8 +1,7 @@
 /* eslint-disable linebreak-style */
-
-
 const express = require('express');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
 const forceSSL = require('express-force-ssl');
 const path = require('path');
 const morgan = require('morgan');
@@ -10,6 +9,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const favicon = require('serve-favicon');
 const helmet = require('helmet');
+const cryptoJs = require('crypto-js');
 const http = require("http");
 
 // Importing the express module under the `app` variable
@@ -63,6 +63,8 @@ app.use(morgan('combined'));
   extended: false,
 })); */
 // Register middleware that parses the request payload.
+
+app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
 app.use(bodyParser.json());
 
 // compress all routes
@@ -107,9 +109,12 @@ app.use((err, req, res) => {
   });
 });
 
+
+
 app.set('port', (process.env.PORT || 3000));
 app.listen(app.get('port'), function() {
     console.log('Server started on port '+app.get('port'));
 });
 
 module.exports = app;
+

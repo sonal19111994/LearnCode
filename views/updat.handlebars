@@ -1,0 +1,202 @@
+<div class="updRoomDetail">
+
+<h2 class="updroomDetaih2"> <strong>Update Room Detail</strong></h2>
+
+<div class="container">
+  <form >
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="col-25">
+        <label for="State" >State</label>
+      </div>
+      <div class="col-75">
+        <select id="updState" class="addroomdetailformelement" name="State">
+          {{#each loadupdatedetailpagedata.loadStatelist}}
+          <option value="{{ this.id }}">{{ this.statename }}</option>
+          
+           {{/each}}
+        </select>
+      </div>
+
+   </div>
+      <div class="col-sm-6">
+       
+        <div class="col-25">
+        <label for="City" >City</label>
+      </div>
+      <div class="col-75">
+        <select id="updCity" class="addroomdetailformelement" name="City">
+          {{#each loadupdatedetailpagedata.loadCitylist}}
+          <option value="{{ this.id }}">{{ this.cityname }}</option>
+          {{/each}}
+        </select>
+      </div>
+
+   
+      </div>
+    </div>
+
+      <div class="row">
+      <div class="col-sm-6">
+        <div class="col-25">
+        <label for="Ownername" >Owner Name</label>
+      </div>
+      <div class="col-75">
+        <select id="updOwnername" class="addroomdetailformelement" name="Ownername">
+          {{#each loadupdatedetailpagedata.loadVendorlist}}
+          <option value="{{ this.id }}">{{ this.username }}</option>
+          {{/each}}
+        </select>
+      </div>
+
+   </div>
+      <div class="col-sm-6">
+       
+        <div class="col-25">
+        <label for="Roomtype" >Room Type</label>
+      </div>
+      <div class="col-75">
+        <select id="updRoomtype" class="addroomdetailformelement" name="Roomtype">
+         {{#each loadupdatedetailpagedata.loadRoomrentlist}}
+          <option value="{{ this.id }}">{{ this.roomrentname }}</option>
+          {{/each}}
+        </select>
+      </div>
+
+   
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="contactno">Contact Number</label>
+      </div>
+      <div class="col-75">
+        <input id="updcontactno" type="text" class="addroomdetailformel" name="contactno" placeholder="Write something.." ></input>
+      </div>
+      </div>
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="maxpeople">Maximum People allowed</label>
+      </div>
+      <div class="col-75">
+        <input id="updmaxpeople" type="text" class="addroomdetailformel" name="maxpeople" placeholder="Write something.." ></input>
+      </div>
+      </div>
+    </div>
+
+    
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="col-25">
+        <label for="facility" >Facility</label>
+      </div>
+      <div class="col-75">
+        <select id="updfacility" class="addroomdetailformelement" name="facility"  multiple="multiple">
+          {{#each loadupdatedetailpagedata.loadFacilitylist}}
+          <option value="{{ this.id }}">{{ this.facilityname }}</option>
+          {{/each}}
+        </select>
+      </div>
+
+   </div>
+      <div class="col-sm-6">
+        <div class="col-25">
+        <label for="Roomfor" >Room For</label>
+      </div>
+      <div class="col-75">
+        <select id="updRoomfor" class="addroomdetailformelement" name="Roomfor"  multiple="multiple">
+          {{#each loadupdatedetailpagedata.loadroomapplicabletypelist}}
+          <option value="{{ this.id }}">{{ this.applicabletype }}</option>
+          {{/each}}
+        </select>
+      </div>
+
+   </div>
+    </div>
+ 
+    <div class="row">
+      <div class="col-sm-6">
+      <div class="col-25">
+        <label for="myFile">Upload Primary Room image</label>
+      </div>
+      <div class="col-75">
+       <input type="file" id="updmyFile" name="files" > 
+       </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="col-25">
+        <label for="myFilesecondary">Upload  Room image</label>
+      </div>
+      <div class="col-75">
+       <input type="file" id="updmyFilesecondary" name="files" multiple="true"> 
+       </div>
+    </div>
+    </div>
+
+        <div class="row">
+      <div class="col-sm-12">
+      <div class="col-25">
+        <label for="address">Address Detail</label>
+      </div>
+      <div class="col-75">
+        <input id="updaddress" type="text" class="addroomdetailformel" name="address" placeholder="Write something.." ></input>
+      </div>
+      </div>
+    </div>
+
+        <div class="row">
+      <div class="col-sm-12">
+      <div class="col-25">
+        <label for="landmark">Land Mark</label>
+      </div>
+      <div class="col-75">
+        <input id="updlandmark" type="text" class="addroomdetailformel" name="landmark" placeholder="Write something.." ></input>
+      </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-12">
+      <div class="col-25">
+        <label for="subject">Special Feature</label>
+      </div>
+      <div class="col-75">
+         <input type="text" class ="addroomdetailformel specialfeature" name='+value+'[]>
+      <button type="button" class="addService">+</button></div>
+      </div>
+    </div>
+  
+     <div class="row">
+      <div class="col-sm-12">
+      <div class="col-25">
+        <label for="subject">Extra Information</label>
+      </div>
+      <div class="col-75">
+         <input type="text" class ="addroomdetailformel extrainfo" name='+value+'[]>
+      <button type="button" class="addService1">+</button></div>
+      </div>
+    </div>
+
+   
+
+       <div class="row">
+      <div class="col-25">
+        <label for="roomdetail">Room Detail</label>
+      </div>
+      <div class="col-75">
+        <textarea id="updroomdetail" class="addroomdetailformelement" name="roomdetail" placeholder="Write something.." style="height:200px"></textarea>
+      </div>
+    </div>
+
+   
+    <div class="row">
+      <button type="button" id= "updateroomdetailbtn" class="Addproperty" data-id= ""  value="Submit">Update Detail</button>
+    </div>
+  </form>
+</div>
+</div>

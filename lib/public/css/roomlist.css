@@ -1,7 +1,7 @@
 
     .container-table {
       
-    margin-top: 6%;
+   
     padding: 60px 50px;
 }
 
@@ -21,13 +21,16 @@
 
 .adminaddbtn{
     width:fit-content;
-    float: left
+    float: left;
+    background-color: #46344E;
+    
+    border-radius: 25px;
 }
 
 .roomlisttableedit{
     width:fit-content;
     padding: 4px 13px;
-    background-color: #46344E;
+    background-color: teal;
 
 
 }
@@ -35,9 +38,37 @@
 .roomlisttabledelete{
     width:fit-content;
     padding: 4px 13px;
-    background-color: red;
+    background-color: lightcoral
     
 
 }
+
+.nav-tabs>li>a {
+    background-color: lightcoral;
+    color: white;
+}
+
+.userlistimg{
+    width:40%
+}
+
+.Userlistdetail{
+    font-family: cursive;
+}
+
+.bookvisit {
+    width: 30%;
+    padding: 10px 16px;
+    background-color: teal;
+}
+ .proccedtopay{
+    width: 40%;
+    padding: 10px 16px;
+    background-color: teal;
+}
+.userlistrow{
+    margin-top: 1%;
+}
+
 
     

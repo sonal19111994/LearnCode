@@ -1,0 +1,129 @@
+<script src="../js/roomlist.js"></script>  
+  <script>
+ 
+
+  </script>
+
+  <link rel="stylesheet" href="../css/userroomlist.css">
+
+   <style>
+    
+
+    .userlistimg{
+        width:40%
+    }
+
+    .Userlistdetail{
+        font-family: cursive;
+    }
+
+    .bookvisit {
+        width: fit-content;
+        padding: 10px 16px;
+        background-color: teal;
+        border-radius: 21px;
+    }
+     .proccedtopay{
+        width: fit-content;
+        padding: 10px 16px;
+        background-color: teal;
+        border-radius: 21px;
+    }
+
+    .removefromfav{
+        width: fit-content;
+        padding: 10px 16px;
+        background-color: lightcoral;
+        border-radius: 21px;
+    }
+    .userlistrow{
+        margin-top: 1%;
+    }
+
+    .nav-tabs>li>a {
+    background-color: lightcoral;
+    color: white;
+}
+
+</style>
+<div class="admincontainer container-fluid">
+    <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#roomlistuser">Fav</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#bookavisitadmin">Book A visit</a>
+  </li>
+  </ul>
+<div class="tab-content">
+
+  <div id ="roomlistuser" class=" tab-pane fade in active">
+    {{#each loadfavdata}}
+  <div class="row userlistrow">
+      <div class="col-sm-4">
+<img class ="userlistimg" src="../img/mtm1.jpeg" alt="Los Angeles">
+      </div>
+       <div class="col-sm-4">
+           <p class="Userlistdetail">Rent  Rs {{this.finalrent}}</p>
+           <p class="Userlistdetail">{{this.locationname}}</p>
+           <p class="Userlistdetail">2 BHK Room for Family</p>
+
+      </div>
+       <div class="col-sm-4">
+           
+      <button type="button" id= "bookavisituser" class="bookvisit" data-valueset= "1" data-id= "{{this.roomid}}"  value="Submit">Book a Visit</button>
+    
+      <button type="button" id= "Removefromfavlist" class="removefromfav" data-valueset= "1" data-id= "{{this.roomid}}"  value="Submit">Remove</button>
+    
+      </div>
+      
+   
+      
+  
+        
+    </div> 
+    {{/each}} 
+
+     
+  
+      
+  
+    </div>      
+        
+           
+      <div id ="bookavisitadmin" class="tab-pane fade">
+            {{#each loadbookvisitdata}}
+  <div class="row userlistrow">
+      <div class="col-sm-4">
+<img class ="userlistimg" src="../img/mtm1.jpeg" alt="Los Angeles">
+      </div>
+       <div class="col-sm-4">
+           <p class="Userlistdetail">Rent  Rs {{this.finalrent}}</p>
+           <p class="Userlistdetail">{{this.locationname}}</p>
+           <p class="Userlistdetail">2 BHK Room for Family</p>
+
+      </div>
+       <div class="col-sm-4">
+
+         <form action="payment_gateway/payumoney" method="POST">
+<input class="amount" type="hidden" name="amount" value="{{this.finalrent}}"/>
+<input class="con" type="hidden" name="phone" value="9818536862" />
+<input type="hidden" name="service_provider" 
+ value="payu_paisa"/>
+<input type="hidden" class="product" name="productinfo" 
+value="educational purpose"/>
+<input type="submit" value="procced to pay" data-id= "{{this.roomid}}" class="proccedtopay"/>
+    
+</form>
+           
+      
+       </div>
+      
+   
+      
+  
+    </div>     
+{{/each}}
+      </div>
+      </div>
+      </div>

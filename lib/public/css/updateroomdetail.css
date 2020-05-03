@@ -56,13 +56,9 @@
       margin-top: 0;
     }
   }
-  .addRoomDetail{
-      margin-top: 8%
-  }
   
-  .roomDetail{
-      margin-left:6%
-  }
+  
+  
 
   .addroomdetailformelement{
     padding-bottom: 2% !important;
@@ -125,12 +121,21 @@
     }
 
     .Addproperty{
-      margin-left: 50%;
-      width: 15%;
-      background-color: #333333;
+      float: right;;
+      width: fit-content;
+      background-color: teal;
       padding: 12px 30px;
+      margin-right: 1%;
     }
 
+    .addpropertydet{
+      background-color: lightcoral;
+      color: white;
+      padding: 4px 4px;
+      
+    }
+  
+ 
     
   
  

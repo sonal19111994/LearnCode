@@ -1,4 +1,38 @@
+<style>
+  
+</style>
+<script>
+  $(document).ready(function(){
+    $.ajax({
+    url:'/getUserData',
+    method:'GET',
+    data:{},
+    success: function (response) {
+                  console.log(response);
+                  if(response[0] !=='0'){
+                     $(".welcomeuser").text('Welcome '+response[2]);
+                     $("#userid").val(response[1]);
+                     $("#usernameval").val(response[0]);
 
+                     if(response[3] === 'Vendor'){
+                      $("#headerlist"). append('<li><a href="/">Profile</a></li>');
+                     }
+                     else if(response[3] === 'Admin'){
+                      $("#headerlist"). append('<li><a href="/roomlist">ADMIN</a></li>');
+                       $("#headerlist"). append('<li><a href="/logout">LOGOUT</a></li>');
+                      $("#loginlist").remove();
+                     }
+                     else if (response[3] ==='Tenant'){
+                      $("#headerlist"). append('<li><a href="/userProfilelist">USER PROFILE</a></li>');
+                      $("#headerlist"). append('<li><a href="/logout">LOGOUT</a></li>');
+                       $("#loginlist").remove();
+                     }
+                  }
+                }
+              });
+               });
+              
+</script>
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -10,11 +44,22 @@
       <a class="navbar-brand" href="#myPage">Logo</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="/roomlist">ROOMS</a></li>
-        <li><a href="#portfolio">VALUES</a></li>
-        <li><a href="/signuppage">LOGIN/SIGNUP</a></li>
+       <div class="userright col-md-2 col-lg-2">
+
+          			  				 <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"> -->
+        				  
+                  <input type="hidden" id="userid" val="">
+                  <input type="hidden" id="usernameval" val="">
+
+
+
+          		   </div>
+      <ul class="nav navbar-nav navbar-right" id="headerlist">
+        <li><a class = "welcomeuser" href="/home">Welcome User!</a></li>
+        <li><a href="/about">ABOUT</a></li>
+        
+    
+        <li id="loginlist" ><a href="/signuppage">LOGIN</a></li>
         <li><a href="#contact">CONTACT</a></li>
       </ul>
     </div>

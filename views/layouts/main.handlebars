@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   
-  <title>MTM Rooms</title>
+  <title>MTC Rooms</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
    {{!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> --}}
@@ -19,17 +19,55 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/css/multi-select.min.css"> 
  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script> 
-
-   {{!-- <script src="/js/bootstrap.min.js"></script> --}}
+<link rel="stylesheet" href="../css/loginmodal.css">
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk_pXwCm1MPIE9wq76KZIF-JExFgIoxP4&libraries=places"></script>
+    <script src="/js/signup.js"></script> 
  
  
 
   <style>
 
+    .navbar-toggle {
+      margin-right: 0px !important;
+    }
+
+    .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #46344E !important;
+    
+}
+
+    IMG.sucess {
+            display: block;
+            margin-left: auto;
+            margin-right: auto
+        }
+        #new_message {
+            font-size: 100%;
+        }
+
+     #loading img,
+        {
+            top: 40%;
+            margin: auto;
+            position: relative;
+            display: block;
+            margin-left:40%;
+            margin-top:40%
+
+        }
+
+        #confirm {}
+        .vertical-alignment-helper {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
       body {
     font: 400 15px Lato, sans-serif;
     line-height: 1.8;
     color: #818181;
+    padding-top: 80px;
   }
   h2 {
     font-size: 24px;
@@ -168,13 +206,7 @@
 }
 
 /* Style the form icons */
-.icon {
-  padding: 10px;
-  background: rgb(195, 255, 30);
-  color: white;
-  min-width: 50px;
-  text-align: center;
-}
+
 
   footer .glyphicon {
     font-size: 20px;
@@ -232,18 +264,11 @@
 * {box-sizing: border-box}
 
 /* Full-width input fields */
-  input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
 
 input[type=text]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
+  
 }
 
 hr {
@@ -253,7 +278,7 @@ hr {
 
 /* Set a style for all buttons */
 button {
-  background-color: #4CAF50;
+  
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -269,8 +294,8 @@ button:hover {
 
 /* Extra styles for the cancel button */
 .cancelbtn {
-  padding: 14px 20px;
-  background-color: #46344E;
+  padding: 9px 15px!important;
+  background-color: lightcoral !important;
 }
 
 /* Float cancel and signup buttons and add an equal width */
@@ -291,6 +316,10 @@ button:hover {
   display: table;
 }
 
+.signinbtn{
+  background-color: teal !important;
+  padding: 9px 15px !important;
+}
 
 
   @keyframes slide {
@@ -328,17 +357,89 @@ button:hover {
       font-size: 150px;
     }
   }
+  .error{
+    color:red;
+  }
+
+ 
+
+  
   </style>
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
 
 {{> header}}
 {{{body}}}
 {{> footer}}
 
 
+<div class="modal" id="loading" data-backdrop="static" data-keyboard="false">
+
+        <img src="../img/source.gif" class="fullloaderHealth" width="150" height="150">
+
+</div>
+
+<div class="modal fade" id="confirm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img class="sucess" src="../img/tick_green.png" width="50" height="50">
+                    <h1 id="new_message" style="text-align:center;">Master Added Successfully.</h1>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+  
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
+
 <script>
+    function validatefields() {
+        $(".formValidate").each(function () {
+            $(this).validate({
+                showErrors: function (errorMap, errorList) {
+                    $.each(errorList, function () {
+                        if (this.message == "Invalid format.") {
+                            this.message = "Invalid " + $('label[for="' + $(this.element).attr('id') + '"]').html().replace(':', '');
+                            
+                        } else {
+                            this.message = "Enter " + $('label[for="' + $(this.element).attr('id') + '"]').html().replace(':', '');
+                        }
+                        if(this.message.indexOf("*")>-1)
+                            {this.message= this.message.replace('*', '');}
+                        console.log((this.element));
+                    });
+                    this.defaultShowErrors();
+                }
+            }
+            );
+        });
+    }
+    </script>
+    <script> 
+        window.onload = function() {
+ setTimeout (function () {
+  scrollTo(0,0);
+ }, 100); //100ms for example
+} 
+  
 $(document).ready(function(){
+
+ 
+
+ 
+
+  $('#loginlist').click(function(){
+  $('#username').val('');
+  $('#password').val('');
+  $('#id01').show();
+  $('body').css("overflow", "hidden");
+});
   // Add smooth scrolling to all links in navbar + footer link
   $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
     // Make sure this.hash has a value before overriding default behavior

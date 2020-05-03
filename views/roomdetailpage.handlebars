@@ -1,4 +1,65 @@
 <link rel="stylesheet" href="../css/roomdetailpage.css">
+<script src="../js/roomlist.js"></script>
+<script>
+
+</script>
+<style>
+  #myCarousel{
+    margin-top: -5%;
+  }
+  
+  .roomdetail{
+    background-color: teal;
+    color: white;
+    margin-left:2% ;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1%;
+     border-color: black;
+     border-radius: 50%;
+     
+  }
+
+  .Rentdetail{
+    background-color: teal;
+    color: white;
+    margin-left:2% ;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 1%;
+    border-radius: 15%;
+  }
+  
+  
+  .bookvisit{
+    width: fit-content;
+    
+    
+    background-color: teal;
+    
+     border-radius: 25px;
+           
+
+    
+  }
+  .addtofav{
+    width: fit-content;
+    
+     
+     background-color: lightcoral;
+     border-radius: 25px;
+  }
+
+  .myCarousel{
+    margin-top: 7% !important;
+  }
+</style>
+<div class="container-fluid">
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -10,7 +71,7 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="../img/mtm1.jpeg" alt="New York">
+      <img class="crouselimg" src="../img/mtm1.jpeg" alt="New York">
       <div class="carousel-caption">
         <h3>New York</h3>
         <p>The atmosphere in New York is lorem ipsum.</p>
@@ -18,7 +79,7 @@
     </div>
 
     <div class="item">
-      <img src="../img/mtm1.jpeg" alt="Chicago">
+      <img class="crouselimg" src="../img/mtm1.jpeg" alt="Chicago">
       <div class="carousel-caption">
         <h3>Chicago</h3>
         <p>Thank you, Chicago - A night we won't forget.</p>
@@ -26,7 +87,7 @@
     </div>
 
     <div class="item">
-      <img src="../img/mtm1.jpeg" alt="Los Angeles">
+      <img  class="crouselimg" src="../img/mtm1.jpeg" alt="Los Angeles">
       <div class="carousel-caption">
         <h3>LA</h3>
         <p>Even though the traffic was a mess, we had the best time.</p>
@@ -44,47 +105,116 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
+{{#each loadRoomListdata}}
+ <div class="row">
+   <div class="col-md-4">
+<button type="button" id= "bookavisit" class="bookvisit" data-valueset= "1" data-id= "{{this.id}}"  value="Submit">Book a Visit</button>
+    
+   </div>
+   <div class="col-md-4">
+     
+   </div>
+   <div class="col-md-4">
+     
+   
+      
+      <button type="button" id= "addtofavlist" class="addtofav" data-valueset= "1" data-id= "{{this.id}}"  value="Submit">Add to favourite</button>
+    </div>
+    </div>
+{{/each}}
 <div class="container-fluid bg-grey">
   <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-home logo"></span>
+     <h2>Room Details</h2>
+     {{#each loadRoomListdata}}
+     <div class="col-sm-2 roomdetail ">
+     Rs.{{this.finalrent}}/
     </div>
-    <div class="col-sm-4">
-      <h2>Room Details</h2>
-         
-      <p><strong>Bathroom:</strong> 2 </p>
-      <p><strong>Max people:</strong> 2 </p>
-     
+    <div class="col-sm-2 roomdetail ">
+      {{this.furnished}}
+    </div>
+   
+    <div class="col-sm-2 roomdetail ">
+     Area of ({{this.roomarea}} sq. ft)
 
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-2 roomdetail ">
+     {{this.roomrentname}} Room
+    </div>
+    {{/each}}
+    </div>
+  
+    <div class="row">
       <h2>Amenities</h2>
+      <div class="ammenties">
+          {{#each loadRoomListdata}}
+    <div class="col-sm-2 roomdetail ">
+     Stove
+    </div>
+    <div class="col-sm-2 roomdetail ">
+     Dining Table
+    </div>
+    <div class="col-sm-2 roomdetail ">
+     AC
+    </div>
+    <div class="col-sm-2 roomdetail ">
+     Fridge
+    </div>
+    <div class="col-sm-2 roomdetail ">
+     TV
+    </div>
+    <div class="col-sm-2 roomdetail ">
+     WIfi
+    </div>
+      
          
-      <p><strong>Shower</strong> </p>
-      <p><strong>bathroom</strong> </p>
-      <p><strong>WIfi</strong> </p>
-      <p><strong>TV</strong> </p>
-      <p><strong>Fridge</strong> </p>
-      <p><strong>AC</strong> </p>
-      <p><strong>Cooler</strong> </p>
      
+     {{/each}}
 
     </div>
   </div>
 
-  <div class="container-fluid bg-grey">
+  
+  <div class="row">
+
+   <h2>Rent Detail</h2> 
+ {{#each loadRoomListdata}}
+   <div class="col-sm-10 Rentdetail ">
+
+      <p> <span class="glyphicon glyphicon-hand-right"> Monthly Room Rent :</span> Rs {{this.mtcroomrent}} </p>
+</div>
+      <div class="col-sm-10 Rentdetail ">
+     <p> <span class="glyphicon glyphicon-hand-right"> Security Deposit (2 Month Room Rent):</span> Rs {{this.securitydeposit}} </p>
+     </div>
+     <div class="col-sm-10 Rentdetail ">
+      <p> <span class="glyphicon glyphicon-hand-right"> One Time MTC Fees (This is non Re-fundable) :</span> Rs {{this.mtccharge}}  </p>
+      </div>
+      <div class="col-sm-10 Rentdetail ">
+     <p> <span class="glyphicon glyphicon-hand-right"> Monthly Maintenance charges  (This is Room maintainance Fee):</span> Rs {{this.maintainancefee}}</p>
+     </div>
+     <div class="col-sm-10 Rentdetail ">
+      <p> <span class="glyphicon glyphicon-hand-right"> Electricity Bill (It is based on Rate applicable on given area):</span>Rs {{this.electricitybill}} </p>
+      </div>
+       <div class="col-sm-10 Rentdetail ">
+      <p> <span class="glyphicon glyphicon-hand-right"> water Bill (It is based on Rate applicable on given area) :</span>Rs {{this.waterbill}} </p>
+      </div>
+      {{/each}}
+
+    </div>
+    
+
+ 
   <div class="row">
     
-    <div>
-      <h2>Rules</h2>
+     <h2>What we are Responsible For:</h2>
+    <div class="col-sm-10 Rentdetail " >
+     
 
-     <p> <span class="glyphicon glyphicon-hand-right"></span> Rule no a is there is no rules as such enjoy but no trouble to neighbour </p>
-     <p> <span class="glyphicon glyphicon-hand-right"></span> Rule no a is there is no rules as such enjoy but no trouble to neighbour </p>
-      <p> <span class="glyphicon glyphicon-hand-right"></span> Rule no a is there is no rules as such enjoy but no trouble to neighbour </p>
-     <p> <span class="glyphicon glyphicon-hand-right"></span> Rule no a is there is no rules as such enjoy but no trouble to neighbour </p>
-      <p> <span class="glyphicon glyphicon-hand-right"></span> Rule no a is there is no rules as such enjoy but no trouble to neighbour </p>
-     <p> <span class="glyphicon glyphicon-hand-right"></span> Rule no a is there is no rules as such enjoy but no trouble to neighbour </p>
+     <p> <span class="glyphicon glyphicon-hand-right"></span> Showing this house </p>
+     <p> <span class="glyphicon glyphicon-hand-right"></span> Booking confirmation with owner</p>
+      <p> <span class="glyphicon glyphicon-hand-right"></span> Creating rental agreement with owner</p>
+     <p> <span class="glyphicon glyphicon-hand-right"></span> Post move-in services and maintenance at nominal prices </p>
+      <p> <span class="glyphicon glyphicon-hand-right"></span> Returning deposit at the time of move-out </p>
+
 
       
          
@@ -92,20 +222,29 @@
      
 
     </div>
-  </div>
+    </div>
+  
 
-    <div class="container-fluid bg-grey">
+  
   <div class="row">
     
     <div>
      <h4><strong>Extra Info</strong></h4>
     <p>Our apartment is really clean and we like to keep it that way. Enjoy the lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>We accept: <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i> <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></p>
-   
-         
+        
      
      
 
     </div>
   </div>
+  {{#each loadRoomListdata}}
+<div class="row">
+      <button type="button" id= "bookavisit" class="bookvisit" data-id= "{{this.id}}"  value="Submit">Book a Visit</button>
+    
+      <button type="button" id= "addtofavlist" class="addtofav" data-id= "{{this.id}}"  value="Submit">Add to favourite</button>
+    </div>
+    {{/each}}
 
+
+
+</div>

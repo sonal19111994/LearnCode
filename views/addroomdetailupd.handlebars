@@ -1,33 +1,5 @@
 <link rel="stylesheet" href="../css/addroomdetail.css">
 <script src="../js/addroomdetail.js"></script>
-<script>
-
-
-
-google.maps.event.addDomListener(window, 'load', intilize);
-    function intilize() {
-        var autocomplete = new google.maps.places.Autocomplete(document.getElementById("Locationame"));
-
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-
-        var place = autocomplete.getPlace();
-        document.getElementById('lati_typeadmin').value= place.geometry.location.lat() ;
-        document.getElementById('log_typeadmin').value= place.geometry.location.lng();
-     
-
-        var location = "Address: " + place.formatted_address + "<br/>";
-        location += "Latitude: " + place.geometry.location.lat() + "<br/>";
-        location += "Longitude: " +  place.geometry.location.lng();
-        document.getElementById('lblresult').innerHTML = location
-        });
-
-    };
-
-  var searchinput ='Locationame'
-  $(document).ready(function () {
-   
-  })
-</script>
 
 <script>
   $(document).ready(function() {
@@ -69,14 +41,14 @@ google.maps.event.addDomListener(window, 'load', intilize);
  $('#Roomfor').hide();
 });
 </script>
-<div class="container-fluid">
+
 <div class="addRoomDetail">
 
 <h2 class="roomDetail"> <strong>Add Room Detail</strong></h2>
 
 <div class="container">
   <form >
-    <h4 class="addpropertydet">Owner Detail</h4>
+    <h4>Owner Detail</h4>
       <div class="row">
       <div class="col-sm-6">
       <div class="col-25">
@@ -124,25 +96,22 @@ google.maps.event.addDomListener(window, 'load', intilize);
       </div>
        <div class="col-sm-6">
       <div class="col-25">
-        <label for="ownerrent">Rent Agreed</label>
+        <label for="ownerrent">Rent Agreed(in Rs)</label>
       </div>
       <div class="col-75">
-        <input id="ownerrent" type="text" class="addroomdetailformel" name="ownerrent" placeholder="(in Rs)" ></input>
+        <input id="ownerrent" type="text" class="addroomdetailformel" name="ownerrent" placeholder="" ></input>
       </div>
       </div>
     </div>
-
-    <h4 class="addpropertydet">Property Detail</h4>
     <div class="row">
       <div class="col-sm-6">
         <div class="col-25">
         <label for="State" >State</label>
       </div>
       <div class="col-75">
-        <select id="State" class="addroomdetailformelement" name="State" disabled>
-          
+        <select id="State" class="addroomdetailformelement" name="State">
           {{#each loadadddetailpagedata.loadStatelist}}
-          <option  value="{{ this.id }}">{{ this.statename }}</option>
+          <option value="{{ this.id }}">{{ this.statename }}</option>
           
            {{/each}}
         </select>
@@ -155,9 +124,9 @@ google.maps.event.addDomListener(window, 'load', intilize);
         <label for="City" >City</label>
       </div>
       <div class="col-75">
-        <select id="City" class="addroomdetailformelement" name="City" disabled>
+        <select id="City" class="addroomdetailformelement" name="City">
           {{#each loadadddetailpagedata.loadCitylist}}
-          <option  value="{{ this.id }}">{{ this.cityname }}</option>
+          <option value="{{ this.id }}">{{ this.cityname }}</option>
           {{/each}}
         </select>
       </div>
@@ -169,13 +138,14 @@ google.maps.event.addDomListener(window, 'load', intilize);
       <div class="row">
       <div class="col-sm-6">
         <div class="col-25">
-        <label for="Locationame" >Location Name </label>
+        <label for="Ownername" >Owner Name</label>
       </div>
       <div class="col-75">
-          <input id="Locationame" type="text" class="addroomdetailformel" name="Locationame" placeholder="Type Location Name here.." ></input>
-          <input  id="log_typeadmin"  type="hidden" >
-          <input  id="lati_typeadmin"  type="hidden" >
-            <label id="lblresult"></label>
+        <select id="Ownername" class="addroomdetailformelement" name="Ownername">
+          {{#each loadadddetailpagedata.loadVendorlist}}
+          <option value="{{ this.id }}">{{ this.username }}</option>
+          {{/each}}
+        </select>
       </div>
 
    </div>
@@ -186,7 +156,6 @@ google.maps.event.addDomListener(window, 'load', intilize);
       </div>
       <div class="col-75">
         <select id="Roomtype" class="addroomdetailformelement" name="Roomtype">
-          <option value="" selected >Please Choose</option>
          {{#each loadadddetailpagedata.loadRoomrentlist}}
           <option value="{{ this.id }}">{{ this.roomrentname }}</option>
           {{/each}}
@@ -202,25 +171,18 @@ google.maps.event.addDomListener(window, 'load', intilize);
     <div class="row">
       <div class="col-sm-6">
       <div class="col-25">
-        <label for="furnished">Furnishing Type</label>
+        <label for="contactno">Contact Number</label>
       </div>
       <div class="col-75">
-         <select id="furnished" class="addroomdetailformelement" name="furnished">
-          <option value="" selected >Please Choose</option>
-         
-          <option value="1">Furnished</option>
-          <option value="2">Semi Furnished</option>
-          <option value="3">Not Furnished</option>
-          
-        </select>
-        </div>
+        <input id="contactno" type="text" class="addroomdetailformel" name="contactno" placeholder="Write something.." ></input>
+      </div>
       </div>
       <div class="col-sm-6">
       <div class="col-25">
-        <label for="propertyarea">Property Area</label>
+        <label for="maxpeople">Maximum People allowed</label>
       </div>
       <div class="col-75">
-        <input id="propertyarea" type="text" class="addroomdetailformel" name="propertyarea" placeholder="in (Sq.Ft)" ></input>
+        <input id="maxpeople" type="text" class="addroomdetailformel" name="maxpeople" placeholder="Write something.." ></input>
       </div>
       </div>
     </div>
@@ -266,38 +228,16 @@ google.maps.event.addDomListener(window, 'load', intilize);
        <input type="file" id="myFile" name="files" > 
        </div>
     </div>
-
-     <div class="col-sm-6">
-     
-      <div class="col-75">
-        <button type="button" class="Addproperty" onclick="addRoomDetail1()" value="Submit">Upload</button>
-   
-       </div>
-    </div>
-    
-    
-    </div>
-</form>
-
-<form id="imagefileuploadsec" class="formValidate"  enctype="multipart/form-data"  charset="UTF-8">
-  <div class="row">
-  <div class="col-sm-6">
+    <div class="col-sm-6">
       <div class="col-25">
-        <label for="myFilesecondary">Other Room image</label>
+        <label for="myFilesecondary">Upload  Room image</label>
       </div>
       <div class="col-75">
-       <input type="file" id="myFilesecondary" name="files[]" multiple="multiple"> 
-       </div>
-    </div>
-     <div class="col-sm-6">
-     
-      <div class="col-75">
-        <button type="button" class="Addproperty" onclick="addRoomDetail2()" value="Submit">Upload</button>
-   
+       <input type="file" id="myFilesecondary" name="files" multiple="true"> 
        </div>
     </div>
     </div>
-  </form>
+</form>
 <form>
         <div class="row">
       <div class="col-sm-12">
@@ -321,103 +261,37 @@ google.maps.event.addDomListener(window, 'load', intilize);
       </div>
     </div>
 
+
+    <div class="row">
+      <div class="col-sm-12">
+      <div class="col-25">
+        <label for="subject">Special Feature</label>
+      </div>
+      <div class="col-75">
+         <input type="text" class ="addroomdetailformel specialfeature" name='+value+'[]>
+      <button type="button" class="addService">+</button></div>
+      </div>
+    </div>
+  
+     <div class="row">
+      <div class="col-sm-12">
+      <div class="col-25">
+        <label for="subject">Extra Information</label>
+      </div>
+      <div class="col-75">
+         <input type="text" class ="addroomdetailformel extrainfo" name='+value+'[]>
+      <button type="button" class="addService1">+</button></div>
+      </div>
+    </div>
+
+   
+
        <div class="row">
-         <div class="col-sm-12">
       <div class="col-25">
         <label for="roomdetail">Room Detail</label>
       </div>
       <div class="col-75">
         <textarea id="roomdetail" class="addroomdetailformelement" name="roomdetail" placeholder="Write something.." style="height:200px"></textarea>
-      </div>
-      </div>
-    </div>
-
-    <h4 class="addpropertydet">MTC Rent Detail</h4>
-      <div class="row">
-      <div class="col-sm-6">
-      <div class="col-25">
-        <label for="electbill">Electricity Bill</label>
-      </div>
-      <div class="col-75">
-        <input id="electbill" type="text" class="addroomdetailformel" name="electbill" placeholder="(In Rs/)" ></input>
-      </div>
-      </div>
-       <div class="col-sm-6">
-      <div class="col-25">
-        <label for="waterbill">Water Bill</label>
-      </div>
-      <div class="col-75">
-        <input id="waterbill" type="text" class="addroomdetailformel" name="waterbill" placeholder="(In Rs/)" ></input>
-      </div>
-      </div>
-    </div>
-
-          <div class="row">
-      <div class="col-sm-6">
-      <div class="col-25">
-        <label for="maintcharge">Maintainance Charge</label>
-      </div>
-      <div class="col-75">
-        <input id="maintcharge" type="text" class="addroomdetailformel" name="maintcharge" placeholder="(In Rs/)" ></input>
-      </div>
-      </div>
-       <div class="col-sm-6">
-      <div class="col-25">
-        <label for="secdepo">Security Deposit</label>
-      </div>
-      <div class="col-75">
-        <input id="secdepo" type="text" class="addroomdetailformel" name="secdepo" placeholder="(In Rs/)" ></input>
-      </div>
-      </div>
-    </div>
-
-      <div class="row">
-      <div class="col-sm-6">
-      <div class="col-25">
-        <label for="mtccharge">MTC Charge</label>
-      </div>
-      <div class="col-75">
-        <input id="mtccharge" type="text" class="addroomdetailformel" name="mtccharge" placeholder="(In Rs/)" ></input>
-      </div>
-      </div>
-       <div class="col-sm-6">
-      <div class="col-25">
-        <label for="mtcrent">MTC rent</label>
-      </div>
-      <div class="col-75">
-        <input id="mtcrent" type="text" class="addroomdetailformel" name="mtcrent" placeholder="(In Rs/)" ></input>
-      </div>
-      </div>
-    </div>
-    
-    <div class="row">
-     
-       <div class="col-sm-6">
-      <div class="col-25">
-        <label for="finalrent">Final Room Charge</label>
-      </div>
-      <div class="col-75">
-        <input id="finalrent" type="text" class="addroomdetailformel" name="finalrent" placeholder="(In Rs/)" ></input>
-      </div>
-      </div>
-       <div class="col-sm-6">
-      <div class="col-25">
-        <label for="addcharges"> Additional Charges</label>
-      </div>
-      <div class="col-75">
-        <input id="addcharges" type="text" class="addroomdetailformel" name="addcharges" placeholder="" ></input>
-      </div>
-      </div>
-    </div>
-
-           <div class="row">
-         <div class="col-sm-12">
-      <div class="col-25">
-        <label for="addcomment">Add comment</label>
-      </div>
-      <div class="col-75">
-        <textarea id="addcomment" class="addroomdetailformelement" name="addcomment" placeholder="Write something.." style="height:200px"></textarea>
-      </div>
       </div>
     </div>
 
@@ -428,5 +302,5 @@ google.maps.event.addDomListener(window, 'load', intilize);
   </form>
 </div>
 </div>
-</div>
+
  
